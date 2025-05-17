@@ -1,0 +1,145 @@
+
+  /* ───────────────────────────────────────────────────
+     App.css — full stylesheet for Pokémon Memory Match
+  ──────────────────────────────────────────────────── */
+
+  /* 1) Stretch the page to fill the viewport */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+/* 2) App container flex layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3) Light / Dark background toggles */
+body.bg-light {
+  background: #f8f9fa;
+}
+body.bg-dark {
+  background: #212529;
+  color: #eee;
+}
+
+/* ─── HEADER OVERRIDES ─────────────────── */
+header.container {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* ─── POKÉDEX SHOWCASE PANEL ──────────────────────── */
+.pokemon-showcase {
+  flex: 0 0 auto; /* don’t grow or shrink */
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container .pokemon-showcase {
+  max-width: 100%; /* Ensure it respects the container’s width */
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.5rem;
+  max-height: 400px; /* Increased for more visible Pokémon */
+  overflow-y: auto; /* Enable scrolling */
+  padding-bottom: 1rem; /* Space for loading indicator */
+}
+
+.showcase-card {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  text-transform: capitalize;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.showcase-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 0.25rem;
+}
+
+/* ─── MEMORY GRID ────────────────────────────────── */
+.container.grid {
+  flex: 1 1 auto; /* fill remaining space when visible */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+  overflow-y: auto; /* scroll when too many cards */
+  box-sizing: border-box;
+}
+
+/* Hide empty grid */
+.container.grid:empty {
+  display: none;
+}
+
+.card {
+  position: relative; /* for absolute-positioned children */
+  padding-top: 100%; /* 1:1 aspect ratio */
+  background: #eee;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  overflow: hidden;
+}
+
+.card.flipped {
+  transform: scale(1.05);
+}
+
+.card .back {
+  position: absolute;
+  inset: 0; /* top/right/bottom/left = 0 */
+  background: #6c757d;
+}
+
+/* Make the <img> fill its card square */
+.card img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ─── OVERLAYS ───────────────────────────────────── */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 2rem;
+  z-index: 9999;
+}
+
+/* ─── FORM GROUP ─────────────────────── */
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
